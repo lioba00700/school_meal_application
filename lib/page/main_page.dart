@@ -57,7 +57,7 @@ class MainPage extends StatelessWidget {
                                   ),
                         ),
                         FutureBuilder<String>(
-                          future: controller.getMeal(),
+                          future: controller.getMeal(controller.mealType),
                           builder: (context, snapshot) {
                             return Text(
                               snapshot.data ?? '',

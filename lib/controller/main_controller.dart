@@ -21,5 +21,6 @@ class MainController {
     }
   }
 
-  Future<String> getMeal() => _neisRepository.getMeal();
+  Future<String> getMeal(MealType mealType) => 
+  _neisRepository.getMeal(mealType.index);
 }
