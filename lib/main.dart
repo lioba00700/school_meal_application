@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:school_meal_application/controller/main_controller.dart';
 import 'package:school_meal_application/page/main_page.dart';
+import 'package:school_meal_application/page/search_page/search_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,6 +27,10 @@ class MyApp extends StatelessWidget {
           binding: BindingsBuilder((){
             Get.put(MainController());
           }),
+        ),
+        GetPage(
+          name: '/search', 
+          page: () => const SearchPage(),
         ),
       ],
       initialRoute: '/',

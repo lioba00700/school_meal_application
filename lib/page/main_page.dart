@@ -8,7 +8,17 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(children: [
+      appBar: AppBar(
+        title: const Text('오늘의 급식은?'),
+        actions: [
+          IconButton(
+            onPressed: () => Get.toNamed('/search'), 
+            icon: const Icon(Icons.settings),
+          ),
+        ],
+      ),
+      body: Column(
+      children: [
       Expanded(
         child: Align(
           alignment: Alignment.center,
