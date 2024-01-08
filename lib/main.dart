@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:school_meal_application/controller/main_controller.dart';
+import 'package:school_meal_application/controller/school_controller.dart';
 import 'package:school_meal_application/page/main_page.dart';
 import 'package:school_meal_application/page/search_page/search_page.dart';
 
@@ -31,6 +32,9 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/search', 
           page: () => const SearchPage(),
+          binding: BindingsBuilder(() {
+            Get.put(SchoolController());
+          })
         ),
       ],
       initialRoute: '/',
