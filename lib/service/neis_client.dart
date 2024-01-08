@@ -7,16 +7,16 @@ class NeisClient {
   final GetConnect _connect = Get.put(GetConnect());
   
 
-  Future<Map<String,dynamic>> getMeal() async {
+  Future<Map<String,dynamic>> getMeal(String eduCode, String adCode) async {
     String date = DateFormat('yyyyMMdd').format(DateTime.now());
 
     Response response = await _connect.get(
       'https://open.neis.go.kr/hub/mealServiceDietInfo',
       query: {
-        'KEY':'',
+        'KEY':'',//인증키
         'Type': 'json',
-        'ATPT_OFCDC_SC_CODE': 'R10',
-        'SD_SCHUL_CODE': '8750767',
+        'ATPT_OFCDC_SC_CODE': eduCode,
+        'SD_SCHUL_CODE': adCode,
         'MLSV_YMD': date,
       }
     );
@@ -24,14 +24,15 @@ class NeisClient {
     return jsonDecode(response.body);
   }
 
-  Future<Map<String, dynamic>> getSchool() async{
+  Future<Map<String, dynamic>> getSchool(int index, String name) async{
     Response response = await _connect.get(
       'https://open.neis.go.kr/hub/schoolInfo',
       query: {
-        'KEY':'',
+        'KEY':'',//인증키
         'Type': 'json',
-        'pIndex': '1',
+        'pIndex': '$index',
         'pSize':'1000',
+        'SCHUL_NM': name
       },
     );
 

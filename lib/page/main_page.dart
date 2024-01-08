@@ -12,7 +12,11 @@ class MainPage extends StatelessWidget {
         title: const Text('오늘의 급식은?'),
         actions: [
           IconButton(
-            onPressed: () => Get.toNamed('/search'), 
+            onPressed: () => Get.toNamed('/search')?.then((value) {
+              if(value != null) {
+                Get.find<MainController>().schoolInfo = value;
+              }
+            }),  
             icon: const Icon(Icons.settings),
           ),
         ],
@@ -22,21 +26,23 @@ class MainPage extends StatelessWidget {
       Expanded(
         child: Align(
           alignment: Alignment.center,
-          child: Text.rich(
-            TextSpan(
+          child: Obx(() {
+            return  Text.rich(
+              TextSpan(
               text: '안녕하세요.\n',
               style: Theme.of(context).textTheme.titleLarge,
-              children: const [
+              children: [
                 TextSpan(
-                  text: '경북소프트웨어고등학교',
+                  text: Get.find<MainController>().schoolInfo.name,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                TextSpan(text: '입니다'),
+                const TextSpan(text: '입니다'),
               ],
             ),
-          ),
+          );
+          })
         ),
       ),
       Expanded(
@@ -67,7 +73,7 @@ class MainPage extends StatelessWidget {
                                   ),
                         ),
                         FutureBuilder<String>(
-                          future: controller.getMeal(controller.mealType),
+                          future: controller.getMeal(controller.mealType, controller.schoolInfo),
                           builder: (context, snapshot) {
                             return Text(
                               snapshot.data ?? '',
