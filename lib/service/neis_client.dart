@@ -13,7 +13,7 @@ class NeisClient {
     Response response = await _connect.get(
       'https://open.neis.go.kr/hub/mealServiceDietInfo',
       query: {
-        'KEY':'5ad98727447c4c0ca3fbd01acbeb704e',
+        'KEY':'',
         'Type': 'json',
         'ATPT_OFCDC_SC_CODE': 'R10',
         'SD_SCHUL_CODE': '8750767',
@@ -23,4 +23,6 @@ class NeisClient {
 
     return jsonDecode(response.body);
   }
+
+  
 }
