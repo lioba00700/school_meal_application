@@ -70,7 +70,9 @@ class MainPage extends StatelessWidget {
                 )),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.find<MainController>().nextMealType();
+                  },
                 icon: const Icon(Icons.chevron_right),
               ),
             ],

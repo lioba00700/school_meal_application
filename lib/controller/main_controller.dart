@@ -15,6 +15,11 @@ class MainController {
       _mealType = MealType.values[mealType.index - 1];
     }
   }
+  void nextMealType(){
+    if (mealType.index<2){
+      _mealType = MealType.values[mealType.index + 1];
+    }
+  }
 
   Future<String> getMeal() => _neisRepository.getMeal();
 }
